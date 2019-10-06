@@ -143,6 +143,10 @@ var/list/gamemode_cache = list()
 	//Unversal modifiers
 	var/run_speed = 2
 	var/walk_speed = 1
+	var/minimum_sprint_cost = 0.8
+	var/skill_sprint_cost_range = 0.8
+	var/minimum_stamina_recovery = 1
+	var/maximum_stamina_recovery = 3
 
 	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
 	var/human_delay = 0
@@ -849,6 +853,15 @@ var/list/gamemode_cache = list()
 					config.animal_delay = value
 				if("maximum_mushrooms")
 					config.maximum_mushrooms = value
+
+				if("minimum_sprint_cost")
+					config.minimum_sprint_cost = value
+				if("skill_sprint_cost_range")
+					config.skill_sprint_cost_range = value
+				if("minimum_stamina_recovery")
+					config.minimum_stamina_recovery = value
+				if("maximum_stamina_recovery")
+					config.maximum_stamina_recovery = value
 
 
 				if("use_loyalty_implants")

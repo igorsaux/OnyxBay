@@ -369,6 +369,12 @@
 	return Move(n, direct)
 
 
+/mob/proc/adjust_stamina(var/amt)
+	return
+
+/mob/proc/get_stamina()
+	return 100
+
 ///Process_Incorpmove
 ///Called by client/Move()
 ///Allows mobs to run though walls
