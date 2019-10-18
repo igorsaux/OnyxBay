@@ -8,22 +8,13 @@
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "hypo"
+	origin_tech = list(TECH_MATERIAL = 4, TECH_BIO = 5)
 	amount_per_transfer_from_this = 5
 	unacidable = 1
 	volume = 30
 	possible_transfer_amounts = null
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	slot_flags = SLOT_BELT
-
-///obj/item/weapon/reagent_containers/hypospray/New() //comment this to make hypos start off empty
-//	..()
-//	reagents.add_reagent(/datum/reagent/tricordrazine, 30)
-//	return
-
-/obj/item/weapon/reagent_containers/hypospray/Initialize()
-	. = ..()
-
-	origin_tech = list(TECH_MATERIAL = 4, TECH_BIO = 5)
 
 /obj/item/weapon/reagent_containers/hypospray/do_surgery(mob/living/carbon/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool

@@ -15,12 +15,35 @@
 
 	reagents.add_reagent(/datum/reagent/nutriment/protein, 1)
 
+/obj/item/weapon/reagent_containers/food/snacks/dough/proc/FlatDough()
+	var/atom/flat_dough = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough(src)
+
+	reagents.trans_to_holder(flat_dough.reagents, reagents.total_volume)
+	flat_dough.name = "flat [src.name]"
+	flat_dough.desc = "A flattened [src.name]"
+
+	qdel(src)
+
 // Dough + rolling pin = flat dough
 /obj/item/weapon/reagent_containers/food/snacks/dough/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/material/kitchen/rollingpin))
-		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough(src)
-		to_chat(user, "You flatten the dough.")
-		qdel(src)
+		if (do_after(usr, 30, src, FALSE, TRUE, INCAPACITATION_DEFAULT, TRUE, FALSE))
+			FlatDough()
+			to_chat(user, "You flatten the dough.")
+
+/* BISCUIT DOUGH */
+
+/obj/item/weapon/reagent_containers/food/snacks/dough/biscuit_dough
+	name = "biscuit dough"
+	desc = "A piece of biscuit dough."
+	nutriment_desc = list("dough" = 3, "sugar" = 5, "eggs" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/dough/biscuit_dough/Initialize()
+	. = ..()
+
+	reagents.add_reagent(/datum/reagent/sugar, 5)
+	reagents.add_reagent(/datum/reagent/drink/milk, 5)
+	reagents.add_reagent(/datum/reagent/nutriment/protein/egg, 6)
 
 /* FLAT DOUGH */
 

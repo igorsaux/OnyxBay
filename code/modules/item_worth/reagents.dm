@@ -60,14 +60,8 @@
 /datum/reagent/sodium
 	value = 0.1
 
-/datum/reagent/sugar
-	value = 0.1
-
 /datum/reagent/sulfur
 	value = 2
-
-/datum/reagent/nutriment
-	value = 0.1
 
 /datum/reagent/nutriment/virus_food
 	value = 0.15
@@ -84,9 +78,6 @@
 /datum/reagent/sodiumchloride
 	value = 0.11
 
-/datum/reagent/blackpepper
-	value = 0.1
-
 /datum/reagent/enzyme
 	value = 0.2
 
@@ -98,42 +89,6 @@
 
 /datum/reagent/capsaicin/condensed
 	value = 0.5
-
-/datum/reagent/drink
-	value = 0.1
-
-/datum/reagent/drink/milk/chocolate
-	value = 0.11
-
-/datum/reagent/drink/milk/cream
-	value = 0.12
-
-/datum/reagent/drink/coffee
-	value = 0.12
-
-/datum/reagent/drink/coffee/soy_latte
-	value = 0.13
-
-/datum/reagent/drink/hot_coco
-	value = 0.11
-
-/datum/reagent/drink/milkshake
-	value = 0.12
-
-/datum/reagent/drink/rewriter
-	value = 0.11
-
-/datum/reagent/drink/nuka_cola
-	value = 0.13
-
-/datum/reagent/drink/doctor_delight
-	value = 0.3
-
-/datum/reagent/drink/ice
-	value = 0
-
-/datum/reagent/drink/nothing
-	value = 0
 
 /datum/reagent/ethanol/absinthe
 	value = 0.13

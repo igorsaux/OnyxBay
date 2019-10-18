@@ -1,4 +1,4 @@
-/obj/machinery/chemical_dispenser/full/Initialize()
+/obj/machinery/chemical_dispenser/full
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hydrazine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lithium,
@@ -23,12 +23,10 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten
 		)
 
-	. = ..()
-
 /obj/machinery/chemical_dispenser/ert
 	name = "Medicine Dispenser"
 
-/obj/machinery/chemical_dispenser/ert/Initialize()
+/obj/machinery/chemical_dispenser/ert
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/inaprov,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ryetalyn,
@@ -60,9 +58,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/clonexadone
 		)
 
-	. = ..()
-
-/obj/machinery/chemical_dispenser/ghetto/Initialize()
+/obj/machinery/chemical_dispenser/ghetto
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hydrazine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lithium,
@@ -82,8 +78,6 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten
 		)
 
-	. = ..()
-
 /obj/machinery/chemical_dispenser/bar_soft
 	name = "Soft Drink Dispenser"
 	desc = "A soft drink machine." //Doesn't just serve soda --BlueNexus
@@ -91,7 +85,7 @@
 	ui_title = "Soda Dispenser"
 	accept_drinking = 1
 
-/obj/machinery/chemical_dispenser/bar_soft/full/Initialize()
+/obj/machinery/chemical_dispenser/bar_soft/full
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/water,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
@@ -115,8 +109,6 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon
 		)
 
-	. = ..()
-
 /obj/machinery/chemical_dispenser/bar_alc
 	name = "Booze Dispenser"
 	desc = "A beer machine. Like a soda machine, but more fun!"
@@ -124,7 +116,7 @@
 	ui_title = "Booze Dispenser"
 	accept_drinking = 1
 
-/obj/machinery/chemical_dispenser/bar_alc/full/Initialize()
+/obj/machinery/chemical_dispenser/bar_alc/full
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/water,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/beer,
@@ -142,8 +134,6 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cognac
 		)
 
-	. = ..()
-
 /obj/machinery/chemical_dispenser/bar_coffee
 	name = "coffee dispenser"
 	desc = "Driving crack dealers out of employment since 2280."
@@ -151,7 +141,7 @@
 	ui_title = "Coffee Dispenser"
 	accept_drinking = 1
 
-/obj/machinery/chemical_dispenser/bar_coffee/full/Initialize()
+/obj/machinery/chemical_dispenser/bar_coffee/full
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte,
@@ -162,5 +152,3 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice
 		)
-
-	. = ..()

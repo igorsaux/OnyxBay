@@ -9,7 +9,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	icon_state = "circuit_imprinter"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	layer = BELOW_OBJ_LAYER
-	var/list/datum/design/queue = null
+	var/list/datum/design/queue = list()
 	var/progress = 0
 
 	var/max_material_storage = 75000
@@ -23,7 +23,6 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 /obj/machinery/r_n_d/circuit_imprinter/Initialize()
 	materials = default_material_composition.Copy()
-	queue = list()
 	item_type = list("Machine Boards", "Console Boards", "Mecha Boards", "Module Boards", "Engineering Boards", "Device")
 
 	. = ..()

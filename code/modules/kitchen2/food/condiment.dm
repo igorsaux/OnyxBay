@@ -236,3 +236,20 @@
 	. = ..()
 
 	reagents.add_reagent(/datum/reagent/nutriment/flour, 30)
+
+/* VEGETABLE OIL */
+
+/obj/item/weapon/reagent_containers/food/condiment/vegetable_oil
+	name = "vegetable oil"
+	desc = "A glass of vegetable oil."
+	icon_state = "vegetable_oil"
+	item_state = "vegetable_oil"
+	randpixel = 5
+
+/obj/item/weapon/reagent_containers/food/condiment/vegetable_oil/on_reagent_change()
+	return
+
+/obj/item/weapon/reagent_containers/food/condiment/vegetable_oil/Initialize()
+	. = ..()
+
+	reagents.add_reagent(/datum/reagent/vegetable_oil, 50)

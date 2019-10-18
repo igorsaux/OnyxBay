@@ -5,7 +5,7 @@
 	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
 	var/datum/reagents/holder = null
 	var/reagent_state = SOLID
-	var/list/data = null
+	var/list/data = list()
 	var/volume = 0
 	var/metabolism = REM // This would be 0.2 normally
 	var/ingest_met = 0

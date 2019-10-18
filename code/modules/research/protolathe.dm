@@ -9,18 +9,16 @@
 
 	var/max_material_storage = 100000
 
-	var/list/datum/design/queue = null
+	var/list/datum/design/queue = list()
 	var/progress = 0
 
 	var/mat_efficiency = 1
 	var/speed = 1
 
-	var/list/item_type = null
+	var/list/item_type = list("Stock Parts", "Bluespace", "Data", "Engineering", "Medical", "Surgery",
+	"Mining", "Robotics", "Weapons", "Misc", "Device", "PDA", "RIG")
 
 /obj/machinery/r_n_d/protolathe/Initialize()
-	queue = list()
-	item_type = list("Stock Parts", "Bluespace", "Data", "Engineering", "Medical", "Surgery",
-	"Mining", "Robotics", "Weapons", "Misc", "Device", "PDA", "RIG")
 	materials = default_material_composition.Copy()
 
 	. = ..()

@@ -1315,17 +1315,6 @@
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/meatball(location)
 
-/datum/chemical_reaction/dough
-	name = "Dough"
-	result = null
-	required_reagents = list(/datum/reagent/nutriment/protein/egg = 3, /datum/reagent/nutriment/flour = 10, /datum/reagent/water = 5)
-	result_amount = 1
-
-/datum/chemical_reaction/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/weapon/reagent_containers/food/snacks/dough(location)
-
 /datum/chemical_reaction/syntiflesh
 	name = "Syntiflesh"
 	result = null

@@ -11,7 +11,6 @@
 	color = "#664330"
 
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
-
 	if(!islist(newdata) || !newdata.len)
 		return
 
@@ -2398,13 +2397,13 @@
 
 /datum/reagent/ethanol/witcher
 	name = "Witcher"
-	description = "“People,” Geralt turned his head, “like to invent monsters and monstrosities. Then they seem less monstrous themselves”"
+	description = "ï¿½People,ï¿½ Geralt turned his head, ï¿½like to invent monsters and monstrosities. Then they seem less monstrous themselvesï¿½"
 	color = "#f6f293"
 	strength = 15
 	taste_description = "potion"
 
 	glass_name = "witchers' drink"
-	glass_desc = "“People,” Geralt turned his head, “like to invent monsters and monstrosities. Then they seem less monstrous themselves”"
+	glass_desc = "ï¿½People,ï¿½ Geralt turned his head, ï¿½like to invent monsters and monstrosities. Then they seem less monstrous themselvesï¿½"
 
 /datum/reagent/ethanol/witcher/wolf
 	name = "School of the Wolf"
