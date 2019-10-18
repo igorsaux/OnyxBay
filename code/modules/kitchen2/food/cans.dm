@@ -5,15 +5,20 @@
 
 //DRINKS
 
+/* COLA */
+
 /obj/item/weapon/reagent_containers/food/drinks/cans/cola
 	name = "\improper Space Cola"
 	desc = "Cola. in space."
 	icon_state = "cola"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/cola/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/cola/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/space_cola, 40)
+
+/* VANILLA SPACE COLA */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/colavanilla
 	name = "\improper Vanilla Space Cola"
@@ -21,10 +26,13 @@
 	icon_state = "colavanilla"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/colavanilla/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/colavanilla/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/space_cola, 30)
 	reagents.add_reagent(/datum/reagent/drink/milkshake, 10)
+
+/* CHERRY SPACE COLA */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/colacherry
 	name = "\improper Cherry Space Cola"
@@ -32,10 +40,13 @@
 	icon_state = "colacherry"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/colacherry/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/colacherry/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/space_cola, 30)
 	reagents.add_reagent(/datum/reagent/nutriment/cherryjelly, 10)
+
+/* DOPE COLA */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dopecola
 	name = "\improper Dope Cola"
@@ -43,16 +54,13 @@
 	icon_state = "dopecola"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/dopecola/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/dopecola/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/space_cola, 30)
 	reagents.add_reagent(/datum/reagent/thc, 10)
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle
-	name = "bottled water"
-	desc = "Pure drinking water, imported from the Martian poles."
-	icon_state = "waterbottle"
-	center_of_mass = "x=15;y=8"
+/* BOTTLED WATER */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle
 	name = "bottled water"
@@ -60,8 +68,9 @@
 	icon_state = "waterbottle"
 	center_of_mass = "x=15;y=8"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/water, 45)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle/open(mob/user)
@@ -69,15 +78,20 @@
 	to_chat(user, "<span class='notice'>You twist open \the [src], destroying the safety seal!</span>")
 	atom_flags |= ATOM_FLAG_OPEN_CONTAINER
 
+/* SPACE MOUNTAIN WIND */
+
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind
 	name = "\improper Space Mountain Wind"
 	desc = "Blows right through you like a space wind."
 	icon_state = "space_mountain_wind"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/spacemountainwind, 40)
+
+/* THIRTEEN LOKO */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko
 	name = "\improper Thirteen Loko"
@@ -85,9 +99,12 @@
 	icon_state = "thirteen_loko"
 	center_of_mass = "x=16;y=8"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/ethanol/thirteenloko, 40)
+
+/* DR. GIBB */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb
 	name = "\improper Dr. Gibb"
@@ -95,18 +112,25 @@
 	icon_state = "dr_gibb"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/dr_gibb, 40)
+
+/* STAR-KIST */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/starkist
 	name = "\improper Star-kist"
 	desc = "The taste of a star in liquid form. And, a bit of tuna...?"
 	icon_state = "starkist"
 	center_of_mass = "x=16;y=10"
-/obj/item/weapon/reagent_containers/food/drinks/cans/starkist/New()
-	..()
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/starkist/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/brownstar, 40)
+
+/* SPACE-UP */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_up
 	name = "\improper Space-Up"
@@ -114,9 +138,12 @@
 	icon_state = "space-up"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/space_up/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/space_up/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/space_up, 40)
+
+/* LEMON-LIME */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime
 	name = "\improper Lemon-Lime"
@@ -124,9 +151,12 @@
 	icon_state = "lemon-lime"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/lemon_lime, 40)
+
+/* VRISK SERKET ICED TEA */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea
 	name = "\improper Vrisk Serket Iced Tea"
@@ -134,9 +164,12 @@
 	icon_state = "ice_tea_can"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/tea/icetea, 40)
+
+/* GRAPEL JUICE */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice
 	name = "\improper Grapel Juice"
@@ -144,9 +177,12 @@
 	icon_state = "purple_can"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/juice/grape, 40)
+
+/* T-BORG'S TONIC WATER */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/tonic
 	name = "\improper T-Borg's Tonic Water"
@@ -154,9 +190,12 @@
 	icon_state = "tonic"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/tonic/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/tonic/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/tonic, 40)
+
+/* SODA WATER */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/sodawater
 	name = "soda water"
@@ -164,9 +203,12 @@
 	icon_state = "sodawater"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/drink/sodawater, 40)
+
+/* MACHPELLA DARK BEER */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/machpellabeer
 	name = "Machpella Dark Beer"
@@ -174,9 +216,12 @@
 	icon_state = "machpellabeer"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/machpellabeer/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/machpellabeer/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/ethanol/beer/dark/machpella, 40)
+
+/* MEADBY APPLE CIDER */
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/applecider
 	name = "MeadBy Apple Cider"
@@ -184,6 +229,7 @@
 	icon_state = "applecider"
 	center_of_mass = "x=16;y=10"
 
-/obj/item/weapon/reagent_containers/food/drinks/cans/applecider/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/cans/applecider/Initialize()
+	. = ..()
+
 	reagents.add_reagent(/datum/reagent/ethanol/cider/apple, 40)

@@ -8,7 +8,6 @@
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "hypo"
-	origin_tech = list(TECH_MATERIAL = 4, TECH_BIO = 5)
 	amount_per_transfer_from_this = 5
 	unacidable = 1
 	volume = 30
@@ -20,6 +19,11 @@
 //	..()
 //	reagents.add_reagent(/datum/reagent/tricordrazine, 30)
 //	return
+
+/obj/item/weapon/reagent_containers/hypospray/Initialize()
+	. = ..()
+
+	origin_tech = list(TECH_MATERIAL = 4, TECH_BIO = 5)
 
 /obj/item/weapon/reagent_containers/hypospray/do_surgery(mob/living/carbon/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
@@ -65,8 +69,9 @@
 	var/obj/item/weapon/reagent_containers/glass/beaker/vial/loaded_vial
 	volume = 0
 
-/obj/item/weapon/reagent_containers/hypospray/vial/New()
-	..()
+/obj/item/weapon/reagent_containers/hypospray/vial/Initialize()
+	. = ..()
+
 	loaded_vial = new /obj/item/weapon/reagent_containers/glass/beaker/vial(src)
 	volume = loaded_vial.volume
 	reagents.maximum_volume = loaded_vial.reagents.maximum_volume
@@ -115,15 +120,16 @@
 	item_state = "autoinjector"
 	amount_per_transfer_from_this = 5
 	volume = 5
-	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
-	var/list/starts_with = list(/datum/reagent/inaprovaline = 5)
+	var/list/starts_with = null
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/New()
-	..()
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/Initialize()
+	. = ..()
+
+	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
+
 	for(var/T in starts_with)
 		reagents.add_reagent(T, starts_with[T])
 	update_icon()
-	return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
 	..()
@@ -145,22 +151,56 @@
 	else
 		to_chat(user, "<span class='notice'>It is spent.</span>")
 
+/* INOPRAVOLINE */
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/inorpavoline
+	name = "autoinjector (inopravoline)"
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/inorpavoline/Initialize()
+	starts_with = list(/datum/reagent/inaprovaline = 5)
+
+	. = ..()
+
+/* DETOX */
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/detox
 	name = "autoinjector (antitox)"
 	icon_state = "green"
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox/Initialize()
 	starts_with = list(/datum/reagent/dylovene = 5)
+
+	. = ..()
+
+/* PAIN */
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/pain
 	name = "autoinjector (painkiller)"
 	icon_state = "purple"
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/pain/Initialize()
 	starts_with = list(/datum/reagent/tramadol = 5)
+
+	. = ..()
+
+/* OXYCODONE */
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/combatpain
 	name = "autoinjector (oxycodone)"
 	icon_state = "black"
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/combatpain/Initialize()
 	starts_with = list(/datum/reagent/tramadol/oxycodone = 5)
+
+	. = ..()
+
+/* MINDBREAKER */
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/mindbreaker
 	name = "autoinjector"
 	icon_state = "black"
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/mindbreaker/Initialize()
 	starts_with = list(/datum/reagent/mindbreaker = 5)
+
+	. = ..()

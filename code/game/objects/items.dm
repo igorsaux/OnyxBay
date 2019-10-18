@@ -17,7 +17,7 @@
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
 	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
-	var/list/attack_verb = list("hit") //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/list/attack_verb = null //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/lock_picking_level = 0 //used to determine whether something can pick a lock, and how well.
 
 	//Totally Realistic Onyx Fighting System stuff
@@ -55,7 +55,7 @@
 	var/slowdown_accessory // How much an accessory will slow you down when attached to a worn article of clothing.
 	var/canremove = 1 //Mostly for Ninja code at this point but basically will not allow the item to be removed if set to 0. /N
 	var/candrop = 1
-	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armor = null
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/device/uplink/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
@@ -68,7 +68,7 @@
 
 	//** These specify item/icon overrides for _slots_
 
-	var/list/item_state_slots = list(slot_wear_id_str = "id") //overrides the default item_state for particular slots.
+	var/list/item_state_slots = null //overrides the default item_state for particular slots.
 
 	// Used to specify the icon file to be used when the item is worn. If not set the default icon for that slot will be used.
 	// If icon_override is set it will take precendence over this, assuming they apply to the slot in question.
@@ -78,10 +78,16 @@
 	var/tmp/sprite_group = null
 
 	// Species-specific sprite sheets for inventory sprites. Used in clothing/refit_for_species() proc.
-	var/list/sprite_sheets_obj = list()
+	var/list/sprite_sheets_obj = null
 
-/obj/item/New()
-	..()
+/obj/item/Initialize()
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	attack_verb = list("hit")
+	item_state_slots = list(slot_wear_id_str = "id")
+	sprite_sheets_obj = list()
+
+	. = ..()
+
 	if(randpixel && (!pixel_x && !pixel_y) && isturf(loc)) //hopefully this will prevent us from messing with mapper-set pixel_x/y
 		pixel_x = rand(-randpixel, randpixel)
 		pixel_y = rand(-randpixel, randpixel)

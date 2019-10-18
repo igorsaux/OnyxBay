@@ -64,12 +64,13 @@
 //	log_debug("[src] has unwielded force [force_unwielded], wielded force [force_wielded] and throwforce [throwforce] when made from default material [material.name]")
 
 
-/obj/item/weapon/material/twohanded/New()
-	..()
+/obj/item/weapon/material/twohanded/Initialize()
+	. = ..()
+
 	update_icon()
 
 /obj/item/weapon/material/twohanded/update_icon()
-	icon_state = "[base_icon][wielded]"
+	icon_state = ("[base_icon]" + "[wielded]")
 	item_state_slots[slot_l_hand_str] = icon_state
 	item_state_slots[slot_r_hand_str] = icon_state
 
@@ -172,17 +173,17 @@
 	slot_flags = SLOT_BACK
 
 //Predefined materials go here.
-/obj/item/weapon/material/twohanded/baseballbat/metal/New(var/newloc)
+/obj/item/weapon/material/twohanded/baseballbat/metal/Initialize(var/newloc)
 	..(newloc, MATERIAL_STEEL)
 
-/obj/item/weapon/material/twohanded/baseballbat/uranium/New(var/newloc)
+/obj/item/weapon/material/twohanded/baseballbat/uranium/Initialize(var/newloc)
 	..(newloc, MATERIAL_URANIUM)
 
-/obj/item/weapon/material/twohanded/baseballbat/gold/New(var/newloc)
+/obj/item/weapon/material/twohanded/baseballbat/gold/Initialize(var/newloc)
 	..(newloc, MATERIAL_GOLD)
 
-/obj/item/weapon/material/twohanded/baseballbat/platinum/New(var/newloc)
+/obj/item/weapon/material/twohanded/baseballbat/platinum/Initialize(var/newloc)
 	..(newloc, MATERIAL_PLATINUM)
 
-/obj/item/weapon/material/twohanded/baseballbat/diamond/New(var/newloc)
+/obj/item/weapon/material/twohanded/baseballbat/diamond/Initialize(var/newloc)
 	..(newloc, MATERIAL_DIAMOND)

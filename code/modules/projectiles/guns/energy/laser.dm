@@ -185,6 +185,7 @@ obj/item/weapon/gun/energy/retro
 
 /obj/item/weapon/gun/energy/sniperrifle/update_icon()
 	..()
+
 	item_state_slots[slot_back_str] = icon_state //so that the on-back overlay uses the different charged states
 
 /obj/item/weapon/gun/energy/sniperrifle/verb/scope()
