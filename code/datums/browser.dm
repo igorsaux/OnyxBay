@@ -69,6 +69,15 @@
 		user << browse_rsc(stylesheets[key], filename)
 		head_content += "<link rel='stylesheet' type='text/css' href='[filename]'>"
 
+	var/params = params2list(window_options)
+
+	var/can_close = (text2num(params["can_close"]) ? TRUE : FALSE)
+	var/can_resize = (text2num(params["can_resize"]) ? TRUE : FALSE)
+
+	if (can_resize && findtext(window_options, "can_resize=1"))
+		// Using JS resize, not BYOND
+		window_options = replacetext(window_options, "can_resize=1", "can_resize=0")
+
 	head_content += "<script src='jquery.min.js'></script>"
 	head_content += "<script src='jquery.nanoscroller.min.js'></script>"
 	head_content += "<script src='chui.js'></script>"
@@ -79,17 +88,12 @@
 		user << browse_rsc(scripts[key], filename)
 		head_content += "<script type='text/javascript' src='[filename]'></script>"
 
-	var/title_attributes = "class='uiTitle'"
-	if (title_image)
-		title_attributes = "class='uiTitle icon' style='background-image: url([title_image]);'"
-
-	var/ref = html_encode("\ref[src]")
-
 	return {"<!DOCTYPE html>
 <html>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<head>
-		<meta name="ref" value="[ref]">
+		<meta name="ref" value="[window_id]">
+		<meta name="flags" value="[can_resize ? 1 : 0]">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		[head_content]
 	</head>
@@ -98,8 +102,7 @@
 			<div class='corner tl'></div>
 			<div class='corner tr'></div>
 			<h1>[title]</h1>
-			<a href='byond://winset?[ref].is-minimized=true' class='min'><strong><i class='fas fa-window-minimize'></i></strong></a>
-			<a href='#' class='close'><i class="fas fa-times"></i></a>
+			[can_close ? "<a href='#' class='close'><i class='fas fa-times'></i></a>" : ""]
 		</div>"} : ""]
 		<div class='resizeArea top'   rx='0' ry='-1'></div>
 		<div class='resizeArea tr'    rx='1' ry='-1'></div>
@@ -131,6 +134,15 @@
 	"}
 
 /datum/browser/proc/open(var/use_onclose = 1)
+	if (user && user.client)
+		var/datum/asset/directories/chui/A = get_asset_datum(/datum/asset/directories/chui)
+
+		if (!A.check_sent(user.client))
+			spawn(5)
+				open(use_onclose)
+
+			return
+
 	var/window_size = ""
 	if (width && height)
 		window_size = "size=[width]x[height];"

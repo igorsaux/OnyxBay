@@ -129,6 +129,7 @@ datum/preferences
 
 	dat += "</html></body>"
 	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 1200, 800, src)
+	popup.set_window_options("titlebar=0;can_close=1;can_resize=1;can_scroll=0;border=0;")
 	popup.set_content(dat)
 	popup.open()
 

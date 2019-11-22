@@ -45,7 +45,7 @@
 	output += "</div>"
 
 	panel = new(src, "Welcome","Welcome", 210, 280, src)
-	panel.set_window_options("titlebar=0;can_close=0;can_resize=0;can_scroll=0;border=0;title=Welcome")
+	panel.set_window_options("titlebar=0;can_close=0;can_resize=0;can_scroll=0;border=0;")
 	panel.set_content(output)
 	panel.open()
 	return
