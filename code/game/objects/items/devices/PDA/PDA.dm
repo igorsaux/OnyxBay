@@ -532,9 +532,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				var/index = 0
 				for(var/datum/feed_message/FM in FC.messages)
 					++index
-					if(FM.img)
-						ASSERT(user.client)
-						send_asset(user.client, "newscaster_photo_[FC.channel_id]_[index].png")
 					// News stories are HTML-stripped but require newline replacement to be properly displayed in NanoUI
 					var/body = replacetext(FM.body, "\n", "<br>")
 					messages[++messages.len] = list("author" = FM.author, "body" = body, "message_type" = FM.message_type, "time_stamp" = FM.time_stamp, "has_image" = (FM.img != null), "caption" = FM.caption, "index" = index)
@@ -563,7 +560,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 //NOTE: graphic resources are loaded on client login
 /obj/item/device/pda/attack_self(mob/user as mob)
-	var/datum/asset/assets = get_asset_datum(/datum/asset/directories/pda)
+	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/directories/pda)
 	ASSERT(user.client)
 	assets.send(user.client)
 

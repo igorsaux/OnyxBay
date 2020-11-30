@@ -20,16 +20,29 @@
 
 	var/datum/donator_info/donator_info = new
 
+ 	///world.time they connected
+	var/connection_time
+ 	///world.realtime they connected
+	var/connection_realtime
+ 	///world.timeofday they connected
+	var/connection_timeofday
+
 	///onyxchat chatoutput of the client
 	var/datum/chatOutput/chatOutput
 
-	/*
-	As of byond 512, due to how broken preloading is, preload_rsc MUST be set to 1 at compile time if resource URLs are *not* in use,
-	BUT you still want resource preloading enabled (from the server itself). If using resource URLs, it should be set to 0 and
-	changed to a URL at runtime (see client_procs.dm for procs that do this automatically). More information about how goofy this broken setting works at
-	http://www.byond.com/forum/post/1906517?page=2#comment23727144
-	*/
-	preload_rsc = 0
+	// set to:
+	// 0 to allow using external resources or on-demand behaviour;
+	// 1 to use the default behaviour
+	// 2 for preloading absolutely everything;
+	preload_rsc = 2
+
+	// List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
+	var/list/sent_assets = list()
+	/// List of all completed blocking send jobs awaiting acknowledgement by send_asset
+	var/list/completed_asset_jobs = list()
+	/// Last asset send job id.
+	var/last_asset_job = 0
+	var/last_completed_asset_job = 0
 
 	// * Sound stuff *
 	var/ambience_playing = null

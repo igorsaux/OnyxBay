@@ -74,14 +74,6 @@
 		master_ui.children += src
 	src.state = state
 
-	if (user.client)
-		var/datum/asset/assets = get_asset_datum(/datum/asset/group/tgui)
-
-		if (!assets.check_sent(user.client))
-			to_chat(user, "Resources are still loading. Please wait.")
-			assets.send(user.client)
-			close()
-
  /**
   * private
   *
@@ -108,6 +100,9 @@
 
 	if(!initial_data)
 		set_initial_data(src_object.ui_data(user)) // Get the UI data.
+
+	var/datum/asset/stuff = get_asset_datum(/datum/asset/group/tgui)
+	stuff.send(user)
 
 	var/window_size = ""
 	if(width && height) // If we have a width and height, use them.

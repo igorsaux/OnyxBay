@@ -96,15 +96,6 @@ nanoui is used to open and update nano browser uis
 
 	add_common_assets()
 
-	if(user.client)
-		var/datum/asset/assets = get_asset_datum(/datum/asset/directories/nanoui)
-
-		// Avoid opening the window if the resources are not loaded yet.
-		if(!assets.check_sent(user.client))
-			to_chat(user, "Resources are still loading. Please wait.")
-			assets.send(user.client)
-			close()
-
 //Do not qdel nanouis. Use close() instead.
 /datum/nanoui/Destroy()
 	user = null
@@ -432,6 +423,9 @@ nanoui is used to open and update nano browser uis
 	update_status(0)
 	if(status == STATUS_CLOSE)
 		return // Will be closed by update_status().
+
+	var/datum/asset/stuff = get_asset_datum(/datum/asset/simple/directories/nanoui)
+	stuff.send(user)
 
 	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
 	winset(user, "mapwindow.map", "focus=true") // return keyboard focus to map

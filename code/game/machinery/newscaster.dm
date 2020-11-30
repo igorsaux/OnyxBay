@@ -94,8 +94,9 @@
 
 /datum/feed_network/proc/insert_message_in_channel(datum/feed_channel/FC, datum/feed_message/newMsg)
 	FC.messages += newMsg
-	if(newMsg.img)
-		register_asset("newscaster_photo_[FC.channel_id]_[FC.messages.len].png", newMsg.img)
+	// TODO
+	//if(newMsg.img)
+	//	register_asset("newscaster_photo_[FC.channel_id]_[FC.messages.len].png", newMsg.img)
 	newMsg.parent_channel = FC
 	FC.update()
 	alert_readers(FC.announcement)
@@ -336,15 +337,12 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 					if( isemptylist(src.viewing_channel.messages) )
 						dat+="<I>No feed messages found in channel...</I><BR>"
 					else
-						var/i = 0
 						for(var/datum/feed_message/MESSAGE in src.viewing_channel.messages)
-							++i
 							dat+="-[MESSAGE.body] <BR>"
 							if(MESSAGE.img)
-								var/resourc_name = "newscaster_photo_[viewing_channel.channel_id]_[i].png"
 								ASSERT(user.client)
-								send_asset(user.client, resourc_name)
-								dat+="<img src='[resourc_name]' width = '180'><BR>"
+								dat+=icon2html(MESSAGE.img, target = world)
+								dat+="<BR>"
 								if(MESSAGE.caption)
 									dat+="<FONT SIZE=1><B>[MESSAGE.caption]</B></FONT><BR>"
 								dat+="<BR>"
@@ -840,15 +838,11 @@ obj/item/weapon/newspaper/attack_self(mob/user as mob)
 						dat+="No Feed stories stem from this channel..."
 					else
 						dat+="<ul>"
-						var/i = 0
 						for(var/datum/feed_message/MESSAGE in C.messages)
-							++i
 							dat+="-[MESSAGE.body] <BR>"
 							if(MESSAGE.img)
-								var/resourc_name = "newscaster_photo_[C.channel_id]_[i].png"
 								ASSERT(user.client)
-								send_asset(user.client, resourc_name)
-								dat+="<img src='[resourc_name]' width = '180'><BR>"
+								dat+="<img src='[icon2html(MESSAGE.img, target = world)]' width = '180'><BR>"
 							dat+="<FONT SIZE=1>\[[MESSAGE.message_type] by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR><BR>"
 						dat+="</ul>"
 				if(scribble_page==curr_page)

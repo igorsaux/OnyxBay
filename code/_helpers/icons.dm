@@ -913,12 +913,19 @@ proc/generate_image(tx as num, ty as num, tz as num, range as num, cap_mode = CA
 
 	return cap
 
-/proc/icon2html(thing, target, icon_state, dir, frame = 1, moving = FALSE, realsize = FALSE, class=null)
+/// Generate a filename for this asset
+/// The same asset will always lead to the same asset name
+/// (Generated names do not include file extention.)
+/proc/generate_asset_name(file)
+	return "asset.[md5(fcopy_rsc(file))]"
+
+/proc/icon2html(thing, target, icon_state, dir = SOUTH, frame = 1, moving = FALSE, sourceonly = FALSE, realsize=TRUE, class=null, style=null)
 	if (!thing)
 		return
 
 	var/key
 	var/icon/I = thing
+
 	if (!target)
 		return
 	if (target == world)
@@ -933,23 +940,27 @@ proc/generate_image(tx as num, ty as num, tz as num, range as num, cap_mode = CA
 			return
 	if (!isicon(I))
 		if (isfile(thing)) //special snowflake
-			var/name = "[generate_asset_name(thing)].png"
-			register_asset(name, thing)
+			var/name = sanitize_filename("[generate_asset_name(thing)].png")
+			if (!SSassets.cache[name])
+				SSassets.transport.register_asset(name, thing)
 			for (var/thing2 in targets)
-				ASSERT(isclient(thing2) || ismob(thing2))
-				if(ismob(thing2))
-					var/mob/M = thing2
-					if(!M.client)
-						continue
-					thing2 = M.client
-				send_asset(thing2, key, FALSE)
-			return "<img class='icon icon-misc [class]' src=\"[url_encode(name)]\">"
+				SSassets.transport.send_assets(thing2, name)
+			if(sourceonly)
+				return SSassets.transport.get_asset_url(name)
+			return "<img class='icon icon-misc' src='[SSassets.transport.get_asset_url(name)]'>"
 		var/atom/A = thing
-		if (isnull(dir))
-			dir = A.dir
+
+		I = A.icon
 		if (isnull(icon_state))
 			icon_state = A.icon_state
-		I = A.icon
+			if (!(icon_state in icon_states(I, 1)))
+				icon_state = initial(A.icon_state)
+				if (isnull(dir))
+					dir = initial(A.dir)
+
+		if (isnull(dir))
+			dir = A.dir
+
 		if (ishuman(thing)) // Shitty workaround for a BYOND issue.
 			var/icon/temp = I
 			I = icon()
@@ -964,20 +975,15 @@ proc/generate_image(tx as num, ty as num, tz as num, range as num, cap_mode = CA
 	I = icon(I, icon_state, dir, frame, moving)
 
 	key = "[generate_asset_name(I)].png"
-	register_asset(key, I)
+	if(!SSassets.cache[key])
+		SSassets.transport.register_asset(key, I)
 	for (var/thing2 in targets)
-		ASSERT(isclient(thing2) || ismob(thing2))
-		if(ismob(thing2))
-			var/mob/M = thing2
-			if(!M.client)
-				continue
-			thing2 = M.client
-		send_asset(thing2, key, FALSE)
-
-	if(realsize)
-		return "<img class='icon icon-[icon_state] [class]' style='width:[I.Width()]px;height:[I.Height()]px;min-height:[I.Height()]px' src=\"[url_encode(key)]\">"
-
-	return "<img class='icon icon-[icon_state] [class]' src=\"[url_encode(key)]\">"
+		SSassets.transport.send_assets(thing2, key)
+	if(sourceonly)
+		return SSassets.transport.get_asset_url(key)
+	if (realsize)
+		style += "width:[I.Width()]px;height:[I.Height()]px;"
+	return "<img class='icon icon-[icon_state] [class]' style='[style]' src='[SSassets.transport.get_asset_url(key)]'>"
 
 /proc/build_composite_icon_omnidir(atom/A)
 	var/icon/composite = icon('icons/effects/effects.dmi', "icon_state"="nothing")

@@ -45,15 +45,8 @@
 	// asset_cache
 	var/asset_cache_job = null
 	if(href_list["asset_cache_confirm_arrival"])
-		asset_cache_job = text2num(href_list["asset_cache_confirm_arrival"])
-
-		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
-		//	into letting append to a list without limit.
-		if (!asset_cache_job || asset_cache_job > last_asset_job)
-			return
-
-		if (!(asset_cache_job in completed_asset_jobs))
-			completed_asset_jobs += asset_cache_job
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
 			return
 
 	if (config.minutetopiclimit)
@@ -93,6 +86,9 @@
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, SPAN_DANGER("An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)"))
 		src << browse("...", "window=asset_cache_browser")
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
+		return
 
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
@@ -233,6 +229,10 @@
 	apply_fps(prefs.clientfps)
 
 	. = ..()	//calls mob.Login()
+
+	connection_time = world.time
+	connection_realtime = world.realtime
+	connection_timeofday = world.timeofday
 
 	if(byond_version < MIN_CLIENT_VERSION)
 		src << "<b><center><font size='5' color='red'>Your <font color='blue'>BYOND</font> version is too out of date!</font><br>\
@@ -427,39 +427,24 @@
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
-
-	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/spacemag.css',
-		'html/images/loading.gif',
-		'html/images/ntlogo.png',
-		'html/images/bluentlogo.png',
-		'html/images/sollogo.png',
-		'html/images/terralogo.png',
-		'html/images/talisman.png'
-		)
-
 	spawn (10) //removing this spawn causes all clients to not get verbs.
 		if(!src) // client disconnected
 			return
 
-		var/list/priority_assets = list()
-		var/list/other_assets = list()
+		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
 
-		for(var/type in subtypesof(/datum/asset))
-			get_asset_datum(type)
+		//Precache the client with all other assets slowly, so as to not block other browse() calls
+		if (config.asset_simple_preload)
+			addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
 
-		for(var/asset_type in asset_datums)
-			var/datum/asset/D = asset_datums[asset_type]
-			if(D.isTrivial)
-				other_assets += D
-			else
-				priority_assets += D
+		if (get_preference_value("ALL_ASSETS_PRELOAD") == GLOB.PREF_NO)
+			return
 
-		for(var/datum/asset/D in (priority_assets + other_assets))
-			if (!D.send_slow(src)) //Precache the client with all other assets slowly, so as to not block other browse() calls
-				return
+		var/list/asset_types = subtypesof(/datum/asset)
+
+		for (var/asset_type in asset_types)
+			var/datum/asset/asset = get_asset_datum(asset_type)
+			asset.send(src)
 
 mob/proc/MayRespawn()
 	return 0

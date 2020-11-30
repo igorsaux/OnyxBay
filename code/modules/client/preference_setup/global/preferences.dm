@@ -262,6 +262,10 @@ var/list/_client_preferences_by_type
 	key = "DEFAULT_HOTKEY_MODE"
 	default_value = GLOB.PREF_NO
 
+/datum/client_preference/assets_preload
+	description = "Preload All Assets"
+	key = "ALL_ASSETS_PRELOAD"
+	options = list(GLOB.PREF_NO, GLOB.PREF_YES)
 
 /********************
 * General Staff Preferences *

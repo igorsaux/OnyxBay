@@ -256,6 +256,12 @@ var/list/gamemode_cache = list()
 
 	var/db_uses_cp1251_encoding = FALSE
 
+	// Assets cache settings
+	var/asset_transport = ""
+	var/asset_simple_preload = TRUE
+	var/asset_cdn_webroot = ""
+	var/asset_cdn_url = ""
+
 /datum/configuration/proc/Initialize()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)

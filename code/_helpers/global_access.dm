@@ -235,10 +235,6 @@
 			return global.ascii_reset;
 		if("ascii_yellow")
 			return global.ascii_yellow;
-		if("asset_cache")
-			return global.asset_cache;
-		if("asset_datums")
-			return global.asset_datums;
 		if("assigned")
 			return global.assigned;
 		if("assigned_blocks")
@@ -694,7 +690,7 @@
 		if("vampirepower_types")
 			return global.vampirepower_types
 		if("vampirepowers")
-			return global.vampirepowers		
+			return global.vampirepowers
 		if("priority_air_alarms")
 			return global.priority_air_alarms;
 		if("priority_announcement")
@@ -1216,10 +1212,6 @@
 			global.ascii_reset=newval;
 		if("ascii_yellow")
 			global.ascii_yellow=newval;
-		if("asset_cache")
-			global.asset_cache=newval;
-		if("asset_datums")
-			global.asset_datums=newval;
 		if("assigned")
 			global.assigned=newval;
 		if("assigned_blocks")
