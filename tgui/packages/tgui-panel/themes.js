@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-export const THEMES = ['light', 'dark'];
+export const THEMES = ['light', 'dark', '98'];
 
 const COLOR_DARK_BG = '#202020';
 const COLOR_DARK_BG_DARKER = '#171717';
@@ -34,57 +34,57 @@ export const setClientTheme = name => {
   if (name === 'light') {
     return Byond.winset({
       // Main windows
-      'infowindow.background-color': 'none',
+      'infowindow.background-color': '#C0C0C0',
       'infowindow.text-color': '#000000',
-      'info.background-color': 'none',
+      'info.background-color': '#C0C0C0',
       'info.text-color': '#000000',
-      'browseroutput.background-color': 'none',
+      'browseroutput.background-color': '#C0C0C0',
       'browseroutput.text-color': '#000000',
-      'outputwindow.background-color': 'none',
+      'outputwindow.background-color': '#C0C0C0',
       'outputwindow.text-color': '#000000',
-      'mainwindow.background-color': 'none',
-      'mainvsplit.background-color': 'none',
+      'mainwindow.background-color': '#C0C0C0',
+      'mainvsplit.background-color': '#C0C0C0',
       // Buttons
-      'changelog.background-color': 'none',
+      'changelog.background-color': '#C0C0C0',
       'changelog.text-color': '#000000',
-      'rulesb.background-color': 'none',
+      'rulesb.background-color': '#C0C0C0',
       'rulesb.text-color': '#000000',
-      'wikib.background-color': 'none',
+      'wikib.background-color': '#C0C0C0',
       'wikib.text-color': '#000000',
-      'discordb.background-color': 'none',
+      'discordb.background-color': '#C0C0C0',
       'discordb.text-color': '#000000',
-      'backstoryb.background-color': 'none',
+      'backstoryb.background-color': '#C0C0C0',
       'backstoryb.text-color': '#000000',
-      'bugreportb.background-color': 'none',
+      'bugreportb.background-color': '#C0C0C0',
       'bugreportb.text-color': '#000000',
-      'storeb.background-color': 'none',
+      'storeb.background-color': '#C0C0C0',
       'storeb.text-color': '#000000',
       // Status and verb tabs
-      'output.background-color': 'none',
+      'output.background-color': '#C0C0C0',
       'output.text-color': '#000000',
-      'statwindow.background-color': 'none',
+      'statwindow.background-color': '#C0C0C0',
       'statwindow.text-color': '#000000',
       'stat.background-color': '#FFFFFF',
-      'stat.tab-background-color': 'none',
+      'stat.tab-background-color': '#C0C0C0',
       'stat.text-color': '#000000',
       'stat.tab-text-color': '#000000',
       'stat.prefix-color': '#000000',
       'stat.suffix-color': '#000000',
-      'asset_cache_browser.background-color': 'none',
+      'asset_cache_browser.background-color': '#C0C0C0',
       'asset_cache_browser.text-color': '#000000',
       // Say, OOC, me Buttons etc.
-      'saybutton.background-color': 'none',
+      'saybutton.background-color': '#C0C0C0',
       'saybutton.text-color': '#000000',
-      'hotkey_toggle.background-color': 'none',
+      'hotkey_toggle.background-color': '#C0C0C0',
       'hotkey_toggle.text-color': '#000000',   
-      'input.background-color': 'none',
+      'input.background-color': '#C0C0C0',
       'input.text-color': '#000000',   
       // Alt variants
-      'saybutton_alt.background-color': 'none',
+      'saybutton_alt.background-color': '#C0C0C0',
       'saybutton_alt.text-color': '#000000',
-      'hotkey_toggle_alt.background-color': 'none',
+      'hotkey_toggle_alt.background-color': '#C0C0C0',
       'hotkey_toggle_alt.text-color': '#000000',      
-      'input_alt.background-color': 'none',
+      'input_alt.background-color': '#C0C0C0',
       'input_alt.text-color': '#000000',
     });
   }
@@ -143,6 +143,62 @@ export const setClientTheme = name => {
       'hotkey_toggle_alt.text-color': COLOR_DARK_TEXT,
       'input_alt.background-color': COLOR_DARK_BG,
       'input_alt.text-color': COLOR_DARK_TEXT,
+    });
+  } else if (name === '98') {
+    Byond.winset({
+      // Main windows
+      'infowindow.background-color': '#008080',
+      'infowindow.text-color': '#000000',
+      'info.background-color': '#008080',
+      'info.text-color': '#000000',
+      'browseroutput.background-color': '#C0C0C0',
+      'browseroutput.text-color': '#000000',
+      'outputwindow.background-color': '#C0C0C0',
+      'outputwindow.text-color': '#000000',
+      'mainwindow.background-color': '#C0C0C0',
+      'mainvsplit.background-color': '#008080',
+      // Buttons
+      'changelog.background-color': '#C0C0C0',
+      'changelog.text-color': '#000000',
+      'rulesb.background-color': '#C0C0C0',
+      'rulesb.text-color': '#000000',
+      'wikib.background-color': '#C0C0C0',
+      'wikib.text-color': '#000000',
+      'discordb.background-color': '#C0C0C0',
+      'discordb.text-color': '#000000',
+      'backstoryb.background-color': '#C0C0C0',
+      'backstoryb.text-color': '#000000',
+      'bugreportb.background-color': '#C0C0C0',
+      'bugreportb.text-color': '#000000',
+      'storeb.background-color': '#C0C0C0',
+      'storeb.text-color': '#000000',
+      // Status and verb tabs
+      'output.background-color': '#C0C0C0',
+      'output.text-color': '#000000',
+      'statwindow.background-color': '#C0C0C0',
+      'statwindow.text-color': '#000000',
+      'stat.background-color': '#C0C0C0',
+      'stat.tab-background-color': '#C0C0C0',
+      'stat.text-color': '#000000',
+      'stat.tab-text-color': '#000000',
+      'stat.prefix-color': '#000000',
+      'stat.suffix-color': '#000000',
+      'asset_cache_browser.background-color': '#C0C0C0',
+      'asset_cache_browser.text-color': '#000000',
+      // Say, OOC, me Buttons etc.
+      'saybutton.background-color': '#C0C0C0',
+      'saybutton.text-color': '#000000',
+      'hotkey_toggle.background-color': '#C0C0C0',
+      'hotkey_toggle.text-color': '#000000',
+      'input.background-color': '#FFFFFF',
+      'input.text-color': '#000000',
+      // Alt vartiants
+      'saybutton_alt.background-color': '#C0C0C0',
+      'saybutton_alt.text-color': '#000000',
+      'hotkey_toggle_alt.background-color': '#C0C0C0',
+      'hotkey_toggle_alt.text-color': '#000000',
+      'input_alt.background-color': '#FFFFFF',
+      'input_alt.text-color': '#000000',
     });
   }
 };
